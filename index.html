@@ -6,37 +6,139 @@
 		  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  	<style type="text/css">
+   	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	.stone-image {
+	width: 300px;
+	height: 300px;
+	}
+	</style>
+  
+
 </head>
 <body>
-	<div class="container-fluid">
-
-	<div id= jumbotron><h3>Crystal Collector</h3></div>
 
 
+	<div class="jumbotron"> 
+    <h1 class="text-center">Crystal Collector</h1>
+    <h3 class="text-center">Click on Crystal to collect points!</h3>
+
+	</div>
+
+	<div class="container">
 	
-	<p><strong>The images are actual crystals that you will find in a scavenger hunt. Please click on them to collect the crystals and at the end of the game we will give you a geo-location id to find them in Atrium Drive.</strong></p>
+	<p><strong><h1 class="text-center">Crystal Collector Wins!!</h1></strong></p>
+	<div class="text-center"> 
+    <p> You will be given ad random number at the start of the game. There are four crystals below. By clicking on a srystal you will add a specific amount of points to your total score.
+    </p>
+    
+    <p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number. The value of each crystal is hidden from you until you click on it.</p>
+    <p>Each time when the game starts, the value of the crystals will change with it.</p>
+	<br>
 
-		<img id ="image" src="week-4-game/assets/images/diamond.jpg" alt="diamond">
-
-
-	<script type="text/javascript">
-
-
-	// Create a variable to hold a random number between 1 and 10
-	var randomNum = Math.floor((Math.random() * 10) + 1);
-
-	// // Create a variable called el to hold the element whose id attribute has a value of info
-	// var el = document.getElementById('info');
-	// // Write the number into that element
-	// el.innerHTML = '<h2>random number</h2><p>' + randomNum + '</p>';
-   		
+	<br>
+    
+	</div>
+	
+	<div class= "text-center"> 
+	<div class row= col-md-3>
+		<div class= panel-title>
+		<h3>Collect Points for Crystals!!</h3>
+	
+		
+		<img id="stone-image" src= "assets/images/emerald.jpg" alt="emerald">
+		<img id="stone-image" src= "assets/images/chunk.jpg" alt="chunk">
+		<img id="stone-image" src= "assets/images/green.jpg" alt="green">
+		<img id="stone-image" src= "assets/images/amethyst.jpg" alt="amethyst">
 		
 
+		<br>
+
+		<h1>Number To Start: <span id="number-to-start"></span></h1>
+
+	</div>
+    </div>
+	</div>
+		   
+  <!-- JavaScript -->
+  
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+ 	<script type="text/javascript">
+
+ 	var targetNumber = 47;
 
 
+ 	$("#number-to-start").text(targetNumber);
 
-	</script>
+ 	var counter = 0;
+
+ 	// In order to assign a new number to each crystal we need to give a random number choice for each of them. We use code that selects number options.
+ 	// Using an array is the way to go.
+
+ 	var numberOptions = [3, 7, 10, 2];
+
+ 	// var increment = numberOptions[Math.round(Math.random())];
+
+ 	// Each stone needs a number assigned to it.
+ 	for (var i = 0; i < numberOptions.length; i++) 
+ 	{
+		var imageStone = $("<img>");
+
+		// Each stone will be given the class " .stone-image".
+
+			// The css will work.
+			imageStone.addClass("stone-image");
+
+			// then assinged an imagein css
+
+			// Each will get the data value
+
+			imageStone.attr("data-stonevalue", numberOptions[i]);
+
+			// Finally each stone will get added to the page.
+
+			$("#stone").append(imageStone);
+
+	 	}
+
+
+ 	$(".stone-image").on("click", function() {
+
+ 		// Determining the stone's value requires us to extract the value from the data attribute.
+	    // Using the $(this) keyword specifies that we should be extracting the stone value of the clicked stone.
+	    // Using the .attr("data-stonevalue") allows us to grab the value out of the "data-stonevalue" attribute.
+	    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+ 		var stoneValue = ($(this).attr("data-stonevalue"));
+ 		stoneValue = parseInt(stoneValue);
+
+ 		// we then add the stoneValue to the user's counter which is a global variable. 
+ 		// Every click from the stones add to the global counter.
+ 		counter += stoneValue;
+
+ 		// All the rest of the logic remains the same.
+ 		
+ 		alert("New score: " + counter);
+
+ 		if (counter === targetNumber) {
+ 		// We then input the new counter value each time the crystal is clicked.
+ 		alert("You win!");
+
+ 		}
+
+ 		// If the user's counter exceeds the target number...
+
+ 		else if (counter >= targetNumber) {
+
+ 			alert("You lose!");
+ 		}
+
+ 		});
+
+	
+		
+</script>
 
 </body>
 </html>
