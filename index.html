@@ -30,7 +30,7 @@
 	
 	<p><strong><h1 class="text-center">Crystal Collector Wins!!</h1></strong></p>
 	<div class="text-center"> 
-    <p> You will be given ad random number at the start of the game. There are four crystals below. By clicking on a srystal you will add a specific amount of points to your total score.
+    <p> You will be given a random number at the start of the game. There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.
     </p>
     
     <p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number. The value of each crystal is hidden from you until you click on it.</p>
@@ -47,10 +47,10 @@
 		<h3>Collect Points for Crystals!!</h3>
 	
 		
-		<img id="stone-image" src= "assets/images/emerald.jpg" alt="emerald">
-		<img id="stone-image" src= "assets/images/chunk.jpg" alt="chunk">
-		<img id="stone-image" src= "assets/images/green.jpg" alt="green">
-		<img id="stone-image" src= "assets/images/amethyst.jpg" alt="amethyst">
+		<img class="stone-image" src= "assets/images/emerald.jpg" alt="emerald">
+		<img class="stone-image" src= "assets/images/chunk.jpg" alt="chunk">
+		<img class="stone-image" src= "assets/images/green.jpg" alt="green">
+		<img class="stone-image" src= "assets/images/amethyst.jpg" alt="amethyst">
 		
 
 		<br>
@@ -60,7 +60,8 @@
 	</div>
     </div>
 	</div>
-		   
+		   <div id= "stone.image">
+		   	</div>
   <!-- JavaScript -->
   
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
@@ -91,7 +92,7 @@
 			// The css will work.
 			imageStone.addClass("stone-image");
 
-			// then assinged an imagein css
+			// then assigned an image in css
 
 			// Each will get the data value
 
@@ -105,7 +106,8 @@
 
 
  	$(".stone-image").on("click", function() {
-
+ 			alert("You pressed the stone image.");
+ 			console.log("tell me")
  		// Determining the stone's value requires us to extract the value from the data attribute.
 	    // Using the $(this) keyword specifies that we should be extracting the stone value of the clicked stone.
 	    // Using the .attr("data-stonevalue") allows us to grab the value out of the "data-stonevalue" attribute.
