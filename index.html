@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 	<title> Crystal Collector </title>
-		  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		  
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
   	<style type="text/css">
-   	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 	.stone-image {
-	width: 300px;
-	height: 300px;
+	width: 200px;
+	height: 200px;
 	}
 	</style>
   
@@ -46,12 +48,13 @@
 		<div class= panel-title>
 		<h3>Collect Points for Crystals!!</h3>
 	
-		
+		<!-- 
 		<img class="stone-image" src= "assets/images/emerald.jpg" alt="emerald">
 		<img class="stone-image" src= "assets/images/chunk.jpg" alt="chunk">
 		<img class="stone-image" src= "assets/images/green.jpg" alt="green">
-		<img class="stone-image" src= "assets/images/amethyst.jpg" alt="amethyst">
-		
+		<img class="stone-image" src= "assets/images/amethyst.jpg" alt="amethyst"> -->
+		<div id= "stone-image">
+	   	</div>
 
 		<br>
 
@@ -60,13 +63,13 @@
 	</div>
     </div>
 	</div>
-		   <div id= "stone.image">
-		   	</div>
-  <!-- JavaScript -->
-  
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		   
 
- 	<script type="text/javascript">
+  <!-- JavaScript -->
+  	
+
+    <script type="text/javascript">
+
 
  	var targetNumber = 47;
 
@@ -79,6 +82,7 @@
  	// Using an array is the way to go.
 
  	var numberOptions = [3, 7, 10, 2];
+ 	var imageSources = ["assets/images/emerald.jpg", "assets/images/chunk.jpg", "assets/images/green.jpg", "assets/images/amethyst.jpg"];
 
  	// var increment = numberOptions[Math.round(Math.random())];
 
@@ -87,26 +91,31 @@
  	{
 		var imageStone = $("<img>");
 
+		 	// console.log("imageStone");
+
 		// Each stone will be given the class " .stone-image".
 
 			// The css will work.
 			imageStone.addClass("stone-image");
-
+			
+				// console.log("stone-image")
 			// then assigned an image in css
 
 			// Each will get the data value
 
 			imageStone.attr("data-stonevalue", numberOptions[i]);
+			imageStone.attr("src", imageSources[i]);
 
 			// Finally each stone will get added to the page.
 
-			$("#stone").append(imageStone);
+			$("#stone-image").append(imageStone);
 
-	 	}
+	}
 
 
  	$(".stone-image").on("click", function() {
- 			alert("You pressed the stone image.");
+ 			alert("You pressed the stone image." + counter + " times!");
+
  			console.log("tell me")
  		// Determining the stone's value requires us to extract the value from the data attribute.
 	    // Using the $(this) keyword specifies that we should be extracting the stone value of the clicked stone.
@@ -115,6 +124,7 @@
  		var stoneValue = ($(this).attr("data-stonevalue"));
  		stoneValue = parseInt(stoneValue);
 
+ 		
  		// we then add the stoneValue to the user's counter which is a global variable. 
  		// Every click from the stones add to the global counter.
  		counter += stoneValue;
